@@ -1,12 +1,57 @@
+// @ts-nocheck
+"use client";
 //* Imports
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC } from "react";
+import { FC, useState } from "react";
 import NavLink from "../core/NavLink";
+import Modal from "../modal/Modal";
+import LoginForm from "../login/LoginForm";
 
 //* NavBar Component
 const NavBar: FC = () => {
     const { pathname } = useRouter();
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleSubmit = (formData) => {
+        console.log("handleSubmit: ");
+        // closeAndResetModal();
+    };
+
+    const handleDeleteHotel = (hotel) => {
+        const updatedHotels = hotels.filter((h) => h.id !== hotel.id);
+        setHotels(updatedHotels);
+    };
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeAndResetModal = () => {
+        setIsModalOpen(false);
+    };
+
+
+    let isLogged = false;
+    if (typeof window !== "undefined") {
+        // El código aquí se ejecutará solo en el lado del cliente
+        const userString = localStorage.getItem("user");
+      
+        if (userString !== null) {
+          const userData = JSON.parse(userString);
+          console.log(userData);
+        } else {
+          console.log("No hay información de usuario en el localStorage");
+        }
+        
+        if (userString !== null) {
+            const userData = JSON.parse(userString);
+            isLogged = userData
+        } else {
+            console.log("No hay información de usuario en el localStorage");
+        }
+      }
 
     return (
         <div
@@ -39,13 +84,23 @@ const NavBar: FC = () => {
                         >
                             Home
                         </NavLink>
-                        <NavLink
-                            styleName="p-[10px] md:p-[13px] font-semibold duration-300 rounded-xl bg-transparent text-white hover:bg-slate-800/90"
-                            href={"/events"}
-                            activePath={"/events"}
-                        >
-                            Events
-                        </NavLink>
+                        {isLogged && (
+                            <NavLink
+                                styleName="p-[10px] md:p-[13px] font-semibold duration-300 rounded-xl bg-transparent text-white hover:bg-slate-800/90"
+                                href={"/events"}
+                                activePath={"/events"}
+                            >
+                                Events
+                            </NavLink>
+                        )}
+                        {isLogged || (
+                            <div
+                                className="p-[10px] cursor-pointer md:p-[13px] font-semibold duration-300 rounded-xl bg-transparent text-white hover:bg-slate-800/90"
+                                onClick={openModal}
+                            >
+                                Sign up
+                            </div>
+                        )}
                         <a
                             href="https://github.com/enzof10"
                             target="_blank"
@@ -63,6 +118,21 @@ const NavBar: FC = () => {
                     </nav>
                 </div>
             </header>
+            <Modal
+                isOpen={isModalOpen}
+                onRequestClose={closeAndResetModal}
+                contentLabel="Editar Hotel"
+                className="modal"
+                overlayClassName="overlay"
+            >
+                <LoginForm onSubmit={handleSubmit} />
+                <button
+                    onClick={closeAndResetModal}
+                    className="mt-4 bg-red-500 text-white px-4 py-2 rounded-md"
+                >
+                    Cerrar
+                </button>
+            </Modal>
         </div>
     );
 };

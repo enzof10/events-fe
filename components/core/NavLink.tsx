@@ -4,31 +4,31 @@ import { FC } from "react";
 import classnames from "classnames";
 
 interface NavLinkProps {
-  children: any;
-  activePath: string;
-  href: string;
-  styleName?: string;
+    children: any;
+    activePath: string;
+    href: string;
+    styleName?: string;
 }
 const NavLink: FC<NavLinkProps> = ({
-  children,
-  activePath,
-  href,
-  styleName,
+    children,
+    activePath,
+    href,
+    styleName,
 }) => {
-  const { pathname: currentPath } = useRouter();
+    const { pathname: currentPath } = useRouter();
 
-  return (
-    <Link href={href}>
-      <a
-        className={classnames(
-          styleName,
-          activePath === currentPath ? "active" : ""
-        )}
-      >
-        {children}
-      </a>
-    </Link>
-  );
+    return (
+        <Link href={href}>
+            <a
+                className={classnames(
+                    styleName,
+                    activePath === currentPath ? "active" : ""
+                )}
+            >
+                {children}
+            </a>
+        </Link>
+    );
 };
 
 export default NavLink;
