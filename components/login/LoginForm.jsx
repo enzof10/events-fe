@@ -63,15 +63,16 @@ const LoginForm = ({ onSubmit, initialData }) => {
                 }
             );
 
-            if (response.ok) {
+            response = await response.json()
+            if (response) {
                 // setError('Error de autenticación: ' + errorData.message);
                 setStatus("success");
-                localStorage.setItem("user", JSON.stringify(userData));
+                localStorage.setItem("user", JSON.stringify(response));
 
                 // Oculta el mensaje de error después de 5 segundos (5000 ms)
                 setTimeout(() => {
                     setNotification(null);
-                    window.reload()
+                    location.reload()
                 }, 2000);
             } else {
                 // La autenticación falló, maneja el error
@@ -90,6 +91,7 @@ const LoginForm = ({ onSubmit, initialData }) => {
                 }, 3000);
             }
         } catch (error) {
+            console.log('error: ', error);
             // setError('Error de autenticación: ' + errorData.message);
             setNotification("El usuario y/o la contraseña son incorrectos.");
             setStatus("error");

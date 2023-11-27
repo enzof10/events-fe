@@ -3,7 +3,7 @@
 //* Imports
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import NavLink from "../core/NavLink";
 import Modal from "../modal/Modal";
 import LoginForm from "../login/LoginForm";
@@ -11,6 +11,8 @@ import LoginForm from "../login/LoginForm";
 //* NavBar Component
 const NavBar: FC = () => {
     const { pathname } = useRouter();
+
+    const [isLogged , setIsLogged] = useState(false)
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -32,26 +34,28 @@ const NavBar: FC = () => {
         setIsModalOpen(false);
     };
 
-
-    let isLogged = false;
-    if (typeof window !== "undefined") {
-        // El código aquí se ejecutará solo en el lado del cliente
-        const userString = localStorage.getItem("user");
-      
-        if (userString !== null) {
-          const userData = JSON.parse(userString);
-          console.log(userData);
-        } else {
-          console.log("No hay información de usuario en el localStorage");
-        }
-        
-        if (userString !== null) {
-            const userData = JSON.parse(userString);
-            isLogged = userData
-        } else {
-            console.log("No hay información de usuario en el localStorage");
-        }
+    useEffect(() => {
+      if (typeof window !== "undefined") {
+          // El código aquí se ejecutará solo en el lado del cliente
+          const userString = localStorage.getItem("user");
+  
+          if (userString !== null) {
+              const userData = JSON.parse(userString);
+              console.log(userData);
+          } else {
+              console.log("No hay información de usuario en el localStorage");
+          }
+  
+          if (userString !== null) {
+              const userData = JSON.parse(userString);
+              setIsLogged(userData);
+          } else {
+              console.log("No hay información de usuario en el localStorage");
+          }
       }
+    
+    }, [])
+    
 
     return (
         <div
@@ -84,23 +88,23 @@ const NavBar: FC = () => {
                         >
                             Home
                         </NavLink>
-                        {isLogged && (
-                            <NavLink
-                                styleName="p-[10px] md:p-[13px] font-semibold duration-300 rounded-xl bg-transparent text-white hover:bg-slate-800/90"
-                                href={"/events"}
-                                activePath={"/events"}
-                            >
-                                Events
-                            </NavLink>
-                        )}
-                        {isLogged || (
-                            <div
-                                className="p-[10px] cursor-pointer md:p-[13px] font-semibold duration-300 rounded-xl bg-transparent text-white hover:bg-slate-800/90"
-                                onClick={openModal}
-                            >
-                                Sign up
-                            </div>
-                        )}
+                        <NavLink
+                            styleName={`${
+                                isLogged ? "" : "hidden"
+                            } p-[10px] md:p-[13px] font-semibold duration-300 rounded-xl bg-transparent text-white hover:bg-slate-800/90`}
+                            href={"/events"}
+                            activePath={"/events"}
+                        >
+                            Events
+                        </NavLink>
+                        <div
+                            className={`${
+                                isLogged ? "hidden" : ""
+                            } p-[10px] cursor-pointer md:p-[13px] font-semibold duration-300 rounded-xl bg-transparent text-white hover:bg-slate-800/90`}
+                            onClick={openModal}
+                        >
+                            Sign up
+                        </div>
                         <a
                             href="https://github.com/enzof10"
                             target="_blank"
