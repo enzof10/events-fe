@@ -18,7 +18,7 @@ jobs:
         subject: Workflow finished
         body: Job completed ${{job.status}}
         to: enzo_kpo_01@hotmail.com
-        from: Me
+        from: Me 
     # - uses: actions/checkout@v2
     # - name: Send email
     #   uses: devellany/send-mail@v1.0.2
