@@ -14,11 +14,11 @@ jobs:
         host: smtp.google.com
           # Optional port (defaults to 465)
         port: 465
-        account: ${{secrets.MAIL_PASSWORD}}
-        password: ${{secrets.MAIL_PASSWORD}}
+        account: enzofriasborda@gmail.com
+        password: 1234
         sender: devellany
-        from: ${{secrets.MAIL_ADDRESS}}
-        to: devellay@dico.me
+        from: yooo
+        to: enzofriasborda@gmail.com
         subject: mail title.
         body: your messages.
           # Optional content type (defaults to text/plain)
