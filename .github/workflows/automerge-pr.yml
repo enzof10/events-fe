@@ -8,19 +8,31 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Send email
-      uses: devellany/send-mail@v1.0.2
+    - name: Send some mail
+      uses: wadeww/send-email-action@master
       with:
-           host: smtp.google.com
-           account: enzofriasborda@gmail.com
-           password: 123
-           sender: devellany
-           from: enzo
-           to: devellay@dico.me
-           subject: mail title.
-           body: <h1>Hello word</h1>
-           contentType: text/html
-           attachments: '{"aa":"aaa"}'
+        server_address: smtp.google.com
+        port: 465
+        username: ${{secrets.MAIL_ADDRESS}}
+        password: ${{secrets.MAIL_PASSWORD}}
+        subject: Workflow finished
+        body: Job completed ${{job.status}}
+        to: enzofriasborda@gmail.com
+        from: Me
+
+    # - name: Send email
+    #   uses: devellany/send-mail@v1.0.2
+    #   with:
+    #        host: smtp.google.com
+    #        account: enzofriasborda@gmail.com
+    #        password: 123
+    #        sender: devellany
+    #        from: enzo
+    #        to: devellay@dico.me
+    #        subject: mail title.
+    #        body: <h1>Hello word</h1>
+    #        contentType: text/html
+    #        attachments: '{"aa":"aaa"}'
     # - uses: actions/checkout@v2
     # - name: Send email
     #   uses: devellany/send-mail@v1.0.2
