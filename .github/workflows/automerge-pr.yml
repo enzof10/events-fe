@@ -16,7 +16,7 @@ jobs:
         username: ${{secrets.MAIL_ADDRESS}}
         password: ${{secrets.MAIL_PASSWORD}}
         subject: Workflow finished
-        body: Job completed ${{job.status}}
+        body: Job completed 
         to: enzofriasborda@gmail.com
         from: Me
 
