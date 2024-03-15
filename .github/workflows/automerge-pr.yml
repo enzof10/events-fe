@@ -3,21 +3,23 @@ on:
   push:
     branches: [ main , develop ]
   pull_request:
-    branches: [ main. develop ]
+    branches: [ main, develop ]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Send email
-      uses: devellany/send-mail@v1.0.2
-      with:
-          host: smtp.naver.com
-          account: ${{secrets.MAIL_ADDRESS}}
+      - name: Send Email
+        uses: hilarion5/send-mail@v1
+        with:
+          smtp-server: smtp.example.com
+          smtp-port: 465
+          smtp-secure: true
+          from-email: sender@example.com
+          to-email: enzo_kpo_01@hotmail.com
+          username: ${{secrets.MAIL_ADDRESS}}
           password: ${{secrets.MAIL_PASSWORD}}
-          sender: devellany
-          from: ${{secrets.MAIL_ADDRESS}}
-          subject: Github Actions job result
-          body: file://README.md
-          attachments: '[{"path":"README.md"}]'
-          to: enzo_17_05@hotmail.com
+          subject: Test Email
+          body: This is a test email sent from GitHub Actions.
+          html: |
+            <h1>This is a test email</h1>
+            <p>Test Paragraph</p>
