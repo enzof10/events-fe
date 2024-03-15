@@ -8,23 +8,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Send email
-      uses: devellany/send-mailer@v1.0.2
+      uses: devellany/send-mail@v1.0.2
       with:
-        host: smtp.google.com
-        # Optional port (defaults to 465)
-        port: 465
-        account: ${{secrets.MAIL_PASSWORD}}
-        password: ${{secrets.MAIL_PASSWORD}}
-        sender: devellany
-        from: ${{secrets.MAIL_ADDRESS}}
-        to: enzo_kpo_01@hotmail.com
-        subject: mail title.
-        body: your messages.
-        # Optional content type (defaults to text/plain)
-        contentType: text/plain
-        # Optional attachment files (JSON type. require property 'path')
-        attachments: '[{"path":"README.md"}]'
+          host: smtp.naver.com
+          account: ${{secrets.MAIL_ADDRESS}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          sender: devellany
+          from: ${{secrets.MAIL_ADDRESS}}
+          subject: Github Actions job result
+          body: file://README.md
+          attachments: '[{"path":"README.md"}]'
+          to: enzo_kpo_01@hotmail.com
 
     # - name: Send email
     #   uses: devellany/send-mailer@v1.0.2
