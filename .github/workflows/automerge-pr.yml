@@ -20,6 +20,7 @@ jobs:
            subject: mail title.
            body: <h1>Hello word</h1>
            contentType: text/html
+           attachments: '{"aa":"aaa"}'
     # - uses: actions/checkout@v2
     # - name: Send email
     #   uses: devellany/send-mail@v1.0.2
