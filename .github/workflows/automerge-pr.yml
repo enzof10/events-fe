@@ -15,7 +15,7 @@ jobs:
           # Optional port (defaults to 465)
         port: 465
         account: enzofriasb10@gmail.com
-        password: avecesanda1234@
+        password: 12343
         sender: devellany
         from: yooo
         to: enzofriasborda@gmail.com
