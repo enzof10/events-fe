@@ -7,27 +7,10 @@ on:
       - synchronize
 
 jobs:
-  auto_approve:
+  send_email:
     runs-on: ubuntu-latest
-
-    env:
-      GH_TOKEN: ${{ secrets.GHTOKEN }} # Esto debe ser añadido en la sección secrets del tablero de GitHub
-
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: |
-          python3 -m pip install --upgrade pip
-          pip install requests
-
-      - name: Verify PR files
-        id: check_changes
-        run: python ./.github/workflows/automerge-pr/verify-pr-files.py
-
       - name: Send Email
-        if: steps.check_changes.outputs.pending == 'true'
         uses: patricksan/email-action@v2
         with:
           server_address: ${{ secrets.SMTP_SERVER }}
