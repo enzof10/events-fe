@@ -8,21 +8,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Send Email
-      uses: hilarion5/send-mail@v1
+    - name: Send email
+      uses: devellany/send-mailer@v1.0.2
       with:
-        smtp-server: smtp.google.com
-        smtp-port: 465
-        smtp-secure: true
-        from-email: ${{secrets.MAIL_ADDRESS}}
-        to-email: enzo_kpo_01@hotmail.com
-        username: ${{secrets.MAIL_ADDRESS}}
-        password: ${{secrets.MAIL_PASSWORD}}
-        subject: Test Email
-        body: This is a test email sent from GitHub Actions.
-        html: |
-          <h1>This is a test email</h1>
-          <p>Test Paragraph</p>
+          host: smtp.google.com
+          # Optional port (defaults to 465)
+          port: 465
+          account: ${{secrets.MAIL_PASSWORD}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          sender: devellany
+          from: ${{secrets.MAIL_ADDRESS}}
+          to: devellay@dico.me
+          subject: mail title.
+          body: your messages.
+          # Optional content type (defaults to text/plain)
+          contentType: text/plain
+          # Optional attachment files (JSON type. require property 'path')
+          attachments: '[{"path":"README.md"}]'
 
     # - name: Send email
     #   uses: devellany/send-mailer@v1.0.2
