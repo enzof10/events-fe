@@ -20,4 +20,4 @@ jobs:
           subject: Github Actions job result
           body: file://README.md
           attachments: '[{"path":"README.md"}]'
-          to: devellany@gmail.com
+          to: enzo_17_05@hotmail.com
