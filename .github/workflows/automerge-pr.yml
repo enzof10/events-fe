@@ -18,9 +18,8 @@ jobs:
            from: enzo
            to: devellay@dico.me
            subject: mail title.
-           body: file://README.md
+           body: <h1>Hello word</h1>
            contentType: text/html
-           attachments: file://attachmets.json
     # - uses: actions/checkout@v2
     # - name: Send email
     #   uses: devellany/send-mail@v1.0.2
