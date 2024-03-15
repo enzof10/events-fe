@@ -11,7 +11,7 @@ jobs:
       - name: Send Email
         uses: hilarion5/send-mail@v1
         with:
-          smtp-server: hotmail.com
+          smtp-server: smtp.google.com
           smtp-port: 465
           smtp-secure: true
           from-email: sender@example.com
