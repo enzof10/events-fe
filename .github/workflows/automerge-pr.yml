@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      GH_TOKEN: ${{ secrets.GHTOKEN }} # This must be added on the secrets section on GitHub dashboard
+      GH_TOKEN: ${{ secrets.GHTOKEN }} # Esto debe ser añadido en la sección secrets del tablero de GitHub
 
     steps:
       - name: Check out repository code
@@ -21,11 +21,19 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           pip install requests
+
       - name: Verify PR files
         id: check_changes
         run: python ./.github/workflows/automerge-pr/verify-pr-files.py
 
-      - name: Auto-approve PR
-        if: steps.check_changes.outputs.pending == 'false'
-        run: |
-          gh pr merge ${{ github.event.number }} --auto --merge
+      - name: Send Email
+        if: steps.check_changes.outputs.pending == 'true'
+        uses: patricksan/email-action@v2
+        with:
+          server_address: ${{ secrets.SMTP_SERVER }}
+          server_port: ${{ secrets.SMTP_PORT }}
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: 'Auto-approval of PR'
+          body: 'The pull request has been auto-approved.'
+          to: 'enzofriasborda@gmail.com'
