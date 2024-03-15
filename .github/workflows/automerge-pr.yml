@@ -14,8 +14,8 @@ jobs:
         host: smtp.google.com
           # Optional port (defaults to 465)
         port: 465
-        account: enzofriasborda@gmail.com
-        password: 1234
+        account: enzofriasb10@gmail.com
+        password: avecesanda1234@
         sender: devellany
         from: yooo
         to: enzofriasborda@gmail.com
