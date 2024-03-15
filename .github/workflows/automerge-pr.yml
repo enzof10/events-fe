@@ -1,4 +1,4 @@
-name: CI
+oname: CI
 on:
   push:
     branches: [ main , develop ]
@@ -13,7 +13,7 @@ jobs:
       with:
         server_address: smtp.gmail.com
         port: 465
-        username: ${{secrets.MAIL_ADDRESS}}
+        username: enzofriasborda@gmail.com
         password: 12345
         subject: Workflow finished
         body: Job completed ${{job.status}}
