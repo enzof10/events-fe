@@ -8,17 +8,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Send email
-      uses: devellany/send-mail@v1.0.2
+    - name: Send some mail
+      uses: wadeww/send-email-action@master
       with:
-          host: smtp.naver.com
-          account: ${{ secrets.MAIL_ADDRESS }}
-          password: ${{ secrets.MAIL_PASSWORD }}
-          sender: devellany
-          from: ${{ secrets.MAIL_ADDRESS }}
-          subject: Github Actions job result
-          body: "algo"
-          to: enzo_kpo_01@hotmail.com
+        server_address: smtp.gmail.com
+        port: 465
+        username: ${{secrets.MAIL_ADDRESS}}
+        password: ${{secrets.MAIL_PASSWORD}}
+        subject: Workflow finished
+        body: Job completed ${{job.status}}
+        to: enzo_kpo_01@hotmail.com
+        from: Me
 
     # - name: Send email
     #   uses: devellany/send-mailer@v1.0.2
