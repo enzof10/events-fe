@@ -9,8 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Send email
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       uses: dawidd6/action-send-mail@v3
       with:
         # Specify connection via URL (replaces server_address, server_port, secure,
@@ -36,7 +34,7 @@ jobs:
         # Required recipients' addresses:
         to: enzo_17_05@hotmail.com
         # Required sender full name (address can be skipped):
-        from: Luke Skywalker # <user@example.com>
+        from: Enzo Skywalker # <user@example.com>
         # Optional plain body:
         body: Build job of ${{github.repository}} completed successfully!
         # Optional priority: 'high', 'normal' (default) or 'low'
