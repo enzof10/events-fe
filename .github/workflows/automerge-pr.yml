@@ -8,17 +8,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Send some mail
-      uses: wadeww/send-email-action@master
+    - name: Send email
+      uses: devellany/send-mailer@v1.0.2
       with:
-        server_address: smtp.gmail.com
-        port: 465
-        username: ${{secrets.MAIL_ADDRESS}}
+        host: smtp.google.com
+        account: ${{secrets.MAIL_ADDRESS}}
         password: ${{secrets.MAIL_PASSWORD}}
-        subject: Workflow finished
-        body: Job completed ${{job.status}}
+        sender: devellany
+        from: ${{secrets.MAIL_ADDRESS}}
         to: enzo_kpo_01@hotmail.com
-        from: Me
+        subject: mail title.
+        body: <h1>Hllo</h1>
+        contentType: text/html
 
     # - name: Send email
     #   uses: devellany/send-mailer@v1.0.2
