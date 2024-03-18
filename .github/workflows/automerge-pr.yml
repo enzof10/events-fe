@@ -20,7 +20,6 @@ jobs:
         #  * smtp+starttls://user:password@server:port
         # Required mail server address if not connection_url:
         connection_url: smtp://${{secrets.MAIL_ADDRESS}}:${{secrets.MAIL_PASSWORD}}@smtp.gmail.com:587 
-        server_address: smtp.gmail.com
         secure: true
         subject: Github Actions job result
         # Required recipients' addresses:
