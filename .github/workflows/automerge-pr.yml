@@ -21,15 +21,7 @@ jobs:
         # Required mail server address if not connection_url:
         connection_url: smtp://${{secrets.MAIL_ADDRESS}}:${{secrets.MAIL_PASSWORD}}@smtp.gmail.com:587 
         server_address: smtp.gmail.com
-        # Server 465, default 25:
-        server_port: 587
-        # Optional whether this connection use TLS (default is true if server_port is 465)
         secure: true
-        # Optional (recommended) mail server username:
-        username: ${{secrets.MAIL_ADDRESS}}
-        # Optional (recommended) mail server password:
-        password: ${{secrets.MAIL_PASSWORD}}
-        # Required mail subject:
         subject: Github Actions job result
         # Required recipients' addresses:
         to: enzo_17_05@hotmail.com
