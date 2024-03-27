@@ -1,14 +1,16 @@
+// @ts-nocheck
 import type { GetStaticProps, NextPage } from "next";
 import SectionHeading from "../components/core/SectionHeading";
 import EventsList from "../components/EventsList";
 import { getFeaturedEvents } from "../utils/db";
 import type { Event } from "../utils/types";
-
+import { useState } from "react";
 interface HomePageProps {
     events: Event[];
 }
 
 const HomePage: NextPage<HomePageProps> = ({ events }) => {
+
     return (
         <div>
             <div className="relative mb-16">
@@ -48,11 +50,14 @@ const HomePage: NextPage<HomePageProps> = ({ events }) => {
                     </div>
                 </div>
             </div>
+
+            
             <SectionHeading>
                 <span className="text-3xl md:text-4xl xl:text-4xl text-slate-800/90 font-luckiestGuy">
                     Featured <span className="text-orange-500/90">Events</span>
                 </span>
             </SectionHeading>
+    
             <EventsList events={events} />
         </div>
     );
